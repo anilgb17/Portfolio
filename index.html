@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil Govind Badiger | Java Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <h1 class="loader-title">Anil<span class="highlight">Badiger</span></h1>
+            <p class="loader-subtitle">SYSTEM INITIALIZING...</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <div id="particles-container"></div>
+    
+    <nav class="navbar">
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero section">
+
+        <div class="hero-content centered-hero">
+            <h1 class="name hidden-element">Hi, I'm <span class="highlight">Anil Govind Badiger</span> &ndash;<br><span id="typed-role"></span></h1>
+            <p class="description hidden-element">Java Full Stack Developer skilled in Java, Spring Boot, React.js, MySQL, REST APIs, HTML5, CSS3, and JavaScript. Experienced in developing scalable web applications, optimizing backend performance, and implementing secure authentication systems. Strong foundation in software engineering with internship experience in Full Stack Development and AI/ML.</p>
+            <div class="cta-buttons hidden-element cta-centered">
+                <a href="#contact" class="btn primary-btn"><i class="fas fa-handshake"></i> Hire Me</a>
+                <a href="resume_anil1.pdf" download="Anil_Govind_Badiger_CV.pdf" class="btn dark-btn"><i class="fas fa-download"></i> Download CV</a>
+                <a href="#projects" class="btn text-btn">View My Work &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about section bg-darker">
+        <h2 class="section-title hidden-element">About Me</h2>
+        <div class="about-container">
+            <div class="about-image-wrapper hidden-element">
+                <div class="glow-avatar-container">
+                    <img src="anil.png" alt="Anil Badiger" class="hacker-avatar">
+                </div>
+            </div>
+            <div class="about-text-content hidden-element">
+                <p>Java Full Stack Developer skilled in Java, Spring Boot, React.js, MySQL, REST APIs, HTML5, CSS3, and JavaScript. Experienced in developing scalable web applications, optimizing backend performance, and implementing secure authentication systems.</p>
+                <p>Strong foundation in software engineering with internship experience in Full Stack Development and AI/ML. Passionate about creating user-focused solutions with measurable impact and continuous learning in emerging technologies.</p>
+                
+                <div class="stats-grid mt-4">
+                    <div class="stat-box">
+                        <span class="stat-number">1+</span>
+                        <span class="stat-text">Years IT Exposure</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-text">Projects Completed</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">8.76</span>
+                        <span class="stat-text">B.E. CGPA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills section">
+        <h2 class="section-title hidden-element">My Skills</h2>
+        <div class="skills-grid hidden-element">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-java"></i></div>
+                <h4>Java</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+                <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                <h4>Python</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-react"></i></div>
+                <h4>React.js</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
+                <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h4>Spring Boot</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+                <span class="skill-percent">75%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                <h4>MySQL</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+                <h4>HTML/CSS</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+                <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                <h4>JavaScript</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
+                <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+                <h4>Git/GitHub</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-docker"></i></div>
+                <h4>Docker</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+                <span class="skill-percent">75%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-brands fa-aws"></i></div>
+                <h4>AWS</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
+                <span class="skill-percent">70%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+                <h4>REST APIs</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                <h4>VS Code</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+                <span class="skill-percent">90%</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience section bg-darker">
+        <h2 class="section-title hidden-element">Experience</h2>
+        <div class="experience-timeline">
+            <div class="exp-card hidden-element">
+                <div class="exp-header">
+                    <h3>Java Full Stack Intern</h3>
+                    <span class="date">Feb 2026 - May 2026</span>
+                </div>
+                <div class="company">Acaders Pvt. Ltd. | Bangalore, India</div>
+                <ul>
+                    <li>Tuned Spring Boot REST APIs through query and code improvements, reducing response latency by 25%.</li>
+                    <li>Developed 15+ backend endpoints integrated with MySQL to support application workflows.</li>
+                    <li>Crafted responsive web interfaces using React.js, HTML5, and CSS3, enhancing user experience across devices.</li>
+                    <li>Integrated frontend components with backend services across 5+ modules, enabling seamless data exchange and improved application responsiveness.</li>
+                    <li>Streamlined CRUD operations across 10+ workflows, enhancing system reliability and reducing the bug rate by 20%.</li>
+                </ul>
+            </div>
+            <div class="exp-card hidden-element">
+                <div class="exp-header">
+                    <h3>AI/ML Intern</h3>
+                    <span class="date">Jan 2025 - Apr 2025</span>
+                </div>
+                <div class="company">Smart Learn Edtech | Bangalore, India</div>
+                <ul>
+                    <li>Constructed CNN-based image classification models using TensorFlow, achieving 85.4% validation accuracy.</li>
+                    <li>Accelerated model training by 15% through hyperparameter tuning and refined data preprocessing pipelines.</li>
+                    <li>Enhanced prediction performance by 18% through iterative experimentation and model refinement.</li>
+                    <li>Leveraged Python, TensorFlow, OpenCV, and NumPy to develop AI-powered image recognition solutions across 4+ image classification categories.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education section">
+        <h2 class="section-title hidden-element">Education</h2>
+        <div class="education-grid">
+            <div class="edu-card hidden-element">
+                <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="edu-content">
+                    <h3>Bachelor of Engineering – Computer Science</h3>
+                    <div class="edu-institution">AGMRCET, Varur (Affiliated to VTU Belagavi) | Hubballi, Karnataka</div>
+                    <div class="edu-meta">
+                        <span class="date">12/2022 – 05/2026</span>
+                        <span class="edu-badge">CGPA: 8.76 / 10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="edu-card hidden-element">
+                <div class="edu-icon"><i class="fas fa-school"></i></div>
+                <div class="edu-content">
+                    <h3>PUC (Pre-University Course)</h3>
+                    <div class="edu-institution">Konnur Science PU College, Yallatti, Jamkhandi</div>
+                    <div class="edu-meta">
+                        <span class="date">06/2020 – 04/2022</span>
+                        <span class="edu-badge">87 / 100</span>
+                    </div>
+                </div>
+            </div>
+            <div class="edu-card hidden-element">
+                <div class="edu-icon"><i class="fas fa-book"></i></div>
+                <div class="edu-content">
+                    <h3>SSLC (Secondary School)</h3>
+                    <div class="edu-institution">G.E.S. MEMS, Gokak</div>
+                    <div class="edu-meta">
+                        <span class="date">06/2019 – 08/2020</span>
+                        <span class="edu-badge">62.4 / 100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title hidden-element" style="margin-top: 60px;">Certifications</h2>
+        <div class="cert-list-grid">
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div>
+                    <h4>AI/ML Internship</h4>
+                    <p>Smart Learn Edtech (Completed: 2025)</p>
+                </div>
+            </div>
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div>
+                    <h4>Java Full Stack Development</h4>
+                    <p>Acaders Pvt. Ltd. (Completed: 2026)</p>
+                </div>
+            </div>
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div>
+                    <h4>AI Business Intelligence Analyst</h4>
+                    <p>Skill India, NSDC (Completed: 2025)</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title hidden-element" style="margin-top: 60px;">Languages</h2>
+        <div class="cert-list-grid">
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-language"></i></div>
+                <div>
+                    <h4>English</h4>
+                </div>
+            </div>
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-language"></i></div>
+                <div>
+                    <h4>Hindi</h4>
+                </div>
+            </div>
+            <div class="cert-card hidden-element">
+                <div class="cert-icon"><i class="fas fa-language"></i></div>
+                <div>
+                    <h4>Kannada</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects section bg-darker">
+        <h2 class="section-title hidden-element">Projects</h2>
+        <div class="project-grid">
+            <div class="project-card hidden-element">
+                <div class="project-banner project-banner-csms">
+                    <div class="project-banner-overlay">
+                        <div class="project-banner-icons">
+                            <i class="fab fa-java"></i>
+                            <i class="fas fa-leaf"></i>
+                            <i class="fab fa-react"></i>
+                            <i class="fas fa-database"></i>
+                        </div>
+                    </div>
+                    <div class="project-type-badge">Full Stack</div>
+                </div>
+                <div class="project-content">
+                    <h3>Car Service Management System (CSMS)</h3>
+                    <p>Engineered a full-stack web application using Java, Spring Boot, React.js, and MySQL with <strong>10+ relational tables</strong>, cutting manual booking effort by <strong>40%</strong>. Secured the application with role-based access control (Admin/User) using Spring Security and JWT authentication. Designed and integrated RESTful APIs to manage customer, vehicle, and service records efficiently. Developed a responsive frontend with HTML5 and CSS3, improving service tracking efficiency and user interaction.</p>
+                    <div class="project-tags">
+                        <span class="small-tag">Java</span>
+                        <span class="small-tag">Spring Boot</span>
+                        <span class="small-tag">React.js</span>
+                        <span class="small-tag">MySQL</span>
+                        <span class="small-tag">JWT</span>
+                    </div>
+                    <div class="project-links project-links-visible">
+                        <a href="https://github.com/anilgb17" target="_blank" class="project-btn github-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="#contact" class="project-btn demo-btn">
+                            <i class="fas fa-paper-plane"></i> Request Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card hidden-element">
+                <div class="project-banner project-banner-ai">
+                    <div class="project-banner-overlay">
+                        <div class="project-banner-icons">
+                            <i class="fab fa-python"></i>
+                            <i class="fas fa-brain"></i>
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                    </div>
+                    <div class="project-type-badge project-type-ai">AI / ML</div>
+                </div>
+                <div class="project-content">
+                    <h3>AI-Based Helmet and Mask Detection System for ATM Security</h3>
+                    <p>Deployed a real-time ATM security system using Python and TensorFlow, achieving <strong>97.55% accuracy</strong> across 3 anomaly classification categories. Applied image preprocessing and augmentation techniques to improve model generalization and detection accuracy. Trained and evaluated deep learning models on custom image datasets for security violation detection. Implemented real-time person detection using OpenCV and deep learning models, processing video streams at <strong>25+ FPS</strong> with live frame analysis.</p>
+                    <div class="project-tags">
+                        <span class="small-tag">Python</span>
+                        <span class="small-tag">TensorFlow</span>
+                        <span class="small-tag">OpenCV</span>
+                        <span class="small-tag">CNN</span>
+                        <span class="small-tag">Deep Learning</span>
+                    </div>
+                    <div class="project-links project-links-visible">
+                        <a href="https://github.com/anilgb17" target="_blank" class="project-btn github-btn">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                        <a href="#contact" class="project-btn demo-btn">
+                            <i class="fas fa-paper-plane"></i> Request Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section bg-darker">
+        <h2 class="section-title hidden-element">Contact Me</h2>
+        <div class="contact-container hidden-element">
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <textarea id="message" rows="5" required placeholder=" "></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="btn primary-btn submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>anilbadiger857@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9019615968</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Belgaum, Karnataka</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links mt-4">
+                    <a href="https://github.com/anilgb17" target="_blank" class="social-icon-small"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/anil-gb-901961agb" target="_blank" class="social-icon-small"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Anil Govind Badiger. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-wrapper">
+        <div class="chatbot-window hidden" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-title"><i class="fas fa-robot"></i> AI Assistant</div>
+                <button id="chatbot-close" class="chatbot-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-content">Hi! I'm Anil's AI assistant. How can I help you today?</div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type a message...">
+                <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button id="chatbot-toggle" class="chatbot-toggle">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
