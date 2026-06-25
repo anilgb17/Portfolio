@@ -461,3 +461,25 @@ function createParticles() {
         updateParticles();
     }
 }
+
+// ── Project Image Preview Lightbox ──
+function openPreview(imageSrc, title) {
+    const modal = document.getElementById('preview-modal');
+    const img   = document.getElementById('preview-img');
+    const ttl   = document.getElementById('preview-title');
+    img.src     = imageSrc;
+    ttl.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePreview() {
+    const modal = document.getElementById('preview-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePreview();
+});

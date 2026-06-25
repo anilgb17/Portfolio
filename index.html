@@ -335,6 +335,11 @@
                             <i class="fas fa-paper-plane"></i> Request Demo
                         </a>
                     </div>
+                    <div class="project-preview-wrap">
+                        <button class="project-btn preview-btn" onclick="openPreview('Full Stack Project.jpeg', 'Car Service Management System (CSMS)')">
+                            <i class="fas fa-images"></i> Preview Project
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="project-card hidden-element">
@@ -366,6 +371,11 @@
                         <a href="#contact" class="project-btn demo-btn">
                             <i class="fas fa-paper-plane"></i> Request Demo
                         </a>
+                    </div>
+                    <div class="project-preview-wrap">
+                        <button class="project-btn preview-btn" onclick="openPreview('AIML Project.jpeg', 'AI-Based Helmet and Mask Detection System for ATM Security')">
+                            <i class="fas fa-images"></i> Preview Project
+                        </button>
                     </div>
                 </div>
             </div>
@@ -449,6 +459,15 @@
         <button id="chatbot-toggle" class="chatbot-toggle">
             <i class="fas fa-comment-dots"></i>
         </button>
+    </div>
+
+    <!-- Image Preview Lightbox -->
+    <div id="preview-modal" class="preview-modal" onclick="closePreview()">
+        <div class="preview-modal-content" onclick="event.stopPropagation()">
+            <button class="preview-close" onclick="closePreview()"><i class="fas fa-times"></i></button>
+            <h3 class="preview-title" id="preview-title"></h3>
+            <img id="preview-img" src="" alt="Project Preview" class="preview-img">
+        </div>
     </div>
 
     <script src="script.js"></script>
