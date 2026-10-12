@@ -2043,3 +2043,13 @@ footer {
 .preview-close:hover {
     background: rgba(255, 80, 80, 0.7);
 }
+
+/* ── KMF Dairy Analytics Project Banner ── */
+.project-banner-kmf {
+    background: linear-gradient(135deg, #1a3a2a 0%, #0d2818 50%, #0a1f10 100%);
+}
+
+.project-type-data {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    color: #fff;
+}
