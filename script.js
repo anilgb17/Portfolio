@@ -1,485 +1,385 @@
-/* =============================================
-   PRELOADER
-   ============================================= */
-window.addEventListener('load', () => {
+/**
+ * ANIL GOVIND BADIGER - CINEMATIC PORTFOLIO JAVASCRIPT
+ * Core Features: Preloader, Ambient Canvas, 3D Tilt, Skills Filter, Lightbox, AI Assistant, Smooth Navigation
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* --------------------------------------------------------------------------
+       1. PRELOADER LOGIC
+       -------------------------------------------------------------------------- */
     const loader = document.getElementById('loader');
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
 
-    if (!loader || !progressBar || !progressText) return;
+    if (loader && progressBar && progressText) {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 15) + 8;
+            if (progress > 100) progress = 100;
 
-    let progress = 0;
-    const duration = 1800;
-    const interval = 18;
-    const steps = duration / interval;
-    const increment = 100 / steps;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${progress}%`;
 
-    const timer = setInterval(() => {
-        progress = Math.min(progress + increment, 100);
-        const pct = Math.floor(progress);
-        progressBar.style.width = `${pct}%`;
-        progressText.textContent = `${pct}%`;
-
-        if (progress >= 100) {
-            clearInterval(timer);
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-                setTimeout(() => { 
-                    loader.style.display = 'none';
-                    // Start typing effect after loader
-                    startTypingEffect();
-                }, 600);
-            }, 350);
-        }
-    }, interval);
-});
-
-/* =============================================
-   TYPING EFFECT FOR HERO
-   ============================================= */
-function startTypingEffect() {
-    const roles = [
-        'Java Full Stack Developer',
-        'AI/ML Enthusiast',
-        'Problem Solver'
-    ];
-    
-    const typedElement = document.getElementById('typed-role');
-    if (!typedElement) return;
-
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-
-    function type() {
-        const currentRole = roles[roleIndex];
-        
-        if (isDeleting) {
-            typedElement.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            typedElement.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            typingSpeed = 2000; // Pause at end
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typingSpeed = 500; // Pause before next word
-        }
-
-        setTimeout(type, typingSpeed);
-    }
-
-    type();
-}
-
-/* =============================================
-   DOM READY
-   ============================================= */
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Year
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    // ===== CURSOR GLOW EFFECT =====
-    const cursorGlow = document.createElement('div');
-    cursorGlow.className = 'cursor-glow';
-    document.body.appendChild(cursorGlow);
-
-    // Extra background blob
-    const bgBlob = document.createElement('div');
-    bgBlob.className = 'bg-blob-extra';
-    document.body.appendChild(bgBlob);
-
-    let mouseX = 0, mouseY = 0;
-    let glowX = 0, glowY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateGlow() {
-        glowX += (mouseX - glowX) * 0.1;
-        glowY += (mouseY - glowY) * 0.1;
-        cursorGlow.style.left = glowX + 'px';
-        cursorGlow.style.top = glowY + 'px';
-        requestAnimationFrame(animateGlow);
-    }
-    animateGlow();
-
-    // ===== SMOOTH SCROLL =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    loader.classList.add('fade-out');
+                }, 300);
             }
-        });
-    });
+        }, 45);
+    }
 
-    // ===== BUTTON RIPPLE EFFECT =====
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
+    /* --------------------------------------------------------------------------
+       2. DYNAMIC YEAR
+       -------------------------------------------------------------------------- */
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.5);
-                left: ${x}px;
-                top: ${y}px;
-                pointer-events: none;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-            `;
-
-            this.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-
-    // ===== MOBILE NAVIGATION =====
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks   = document.querySelector('.nav-links');
-
-    hamburger?.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-        hamburger.classList.toggle('open');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('nav-active');
-            hamburger.classList.remove('open');
-        });
-    });
-
-    // ===== NAVBAR SCROLL TINT =====
-    const navbar = document.querySelector('.navbar');
-    const onScroll = () => {
-        if (window.scrollY > 60) {
-            navbar.style.background = 'rgba(3, 3, 6, 0.97)';
-            navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.6)';
-        } else {
-            navbar.style.background = 'rgba(6, 6, 10, 0.75)';
-            navbar.style.boxShadow = 'none';
-        }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // ===== ACTIVE NAV LINK ON SCROLL =====
+    /* --------------------------------------------------------------------------
+       3. STICKY NAVBAR & ACTIVE NAV LINKS ON SCROLL
+       -------------------------------------------------------------------------- */
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
-    const navItemLinks = document.querySelectorAll('.nav-links a');
 
     window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(sec => {
-            if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
-        });
-        navItemLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
-        });
-    }, { passive: true });
+        const scrollY = window.pageYOffset;
 
-    // ===== SCROLL REVEAL =====
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                // Animate skill fills when skills section enters view
-                if (entry.target.classList.contains('skills-grid')) {
-                    animateSkillBars();
-                }
-                // Animate stats counter when about section enters view
-                if (entry.target.classList.contains('stats-grid')) {
-                    animateStats();
-                }
+        // Sticky styling
+        if (scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Active section highlight
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 120;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    });
 
-    document.querySelectorAll('.hidden-element').forEach(el => revealObserver.observe(el));
+    /* --------------------------------------------------------------------------
+       4. MOBILE NAVIGATION DRAWER
+       -------------------------------------------------------------------------- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    // ===== STATS COUNTER ANIMATION =====
-    let statsAnimated = false;
-    function animateStats() {
-        if (statsAnimated) return;
-        statsAnimated = true;
+    if (hamburger && mobileDrawer) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            mobileDrawer.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
 
-        const statNumbers = document.querySelectorAll('.stat-number');
-        statNumbers.forEach(stat => {
-            const text = stat.textContent;
-            const hasPlus = text.includes('+');
-            const number = parseFloat(text);
-            
-            if (isNaN(number)) return;
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileDrawer.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
 
-            let current = 0;
-            const increment = number / 50;
-            const duration = 1500;
-            const stepTime = duration / 50;
+    /* --------------------------------------------------------------------------
+       5. SMOOTH CURSOR GLOW EFFECT
+       -------------------------------------------------------------------------- */
+    const cursorGlow = document.getElementById('cursor-glow');
+    if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let currentX = mouseX;
+        let currentY = mouseY;
 
-            const counter = setInterval(() => {
-                current += increment;
-                if (current >= number) {
-                    stat.textContent = number + (hasPlus ? '+' : '');
-                    clearInterval(counter);
-                    stat.classList.add('counting');
-                    setTimeout(() => stat.classList.remove('counting'), 500);
-                } else {
-                    stat.textContent = Math.floor(current) + (hasPlus ? '+' : '');
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            currentX += (mouseX - currentX) * 0.12;
+            currentY += (mouseY - currentY) * 0.12;
+            cursorGlow.style.left = `${currentX}px`;
+            cursorGlow.style.top = `${currentY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+    }
+
+    /* --------------------------------------------------------------------------
+       6. 3D PARALLAX TILT ON HERO PORTRAIT & CARDS
+       -------------------------------------------------------------------------- */
+    const portraitPod = document.getElementById('portrait-stage');
+    const heroSection = document.getElementById('home');
+
+    if (portraitPod && heroSection && window.matchMedia('(min-width: 992px)').matches) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            const rotateY = x * 12; // degrees
+            const rotateX = -y * 10;
+
+            portraitPod.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            portraitPod.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    }
+
+    /* --------------------------------------------------------------------------
+       7. AMBIENT PARTICLES CANVAS (ATMOSPHERIC STUDIO MOTES)
+       -------------------------------------------------------------------------- */
+    const canvas = document.getElementById('ambient-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        const particleCount = 45;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2.2 + 0.6;
+                this.speedX = (Math.random() - 0.5) * 0.35;
+                this.speedY = -Math.random() * 0.45 - 0.1;
+                this.alpha = Math.random() * 0.4 + 0.1;
+                this.color = Math.random() > 0.4 ? '245, 158, 11' : '255, 255, 255';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y < 0 || this.x < 0 || this.x > width) {
+                    this.reset();
+                    this.y = height + 10;
                 }
-            }, stepTime);
-        });
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(${this.color}, 0.5)`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(render);
+        }
+        render();
     }
 
-    // ===== SKILL BAR ANIMATION =====
-    function animateSkillBars() {
-        document.querySelectorAll('.skill-fill').forEach(fill => {
-            const target = fill.style.width;
-            fill.style.width = '0%';
-            // Small delay so transition triggers
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                fill.style.width = target;
-            }));
-        });
-    }
+    /* --------------------------------------------------------------------------
+       8. SKILLS CATEGORY FILTERING TABS
+       -------------------------------------------------------------------------- */
+    const skillTabs = document.querySelectorAll('.skill-tab-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
 
-    // ===== CARD 3D TILT EFFECT =====
-    document.querySelectorAll('.project-card, .skill-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-            const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
-            card.style.transform = `perspective(900px) rotateX(${y}deg) rotateY(${x}deg) translateY(-6px)`;
-            card.style.transition = 'transform 0.1s ease, box-shadow 0.3s ease';
-        });
+    skillTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            skillTabs.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            const category = tab.getAttribute('data-category');
+
+            skillCards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 250);
+                }
+            });
         });
     });
 
-    // ===== PROJECT CARD MOUSE TRACKING =====
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            card.style.setProperty('--mouse-x', `${x}%`);
-            card.style.setProperty('--mouse-y', `${y}%`);
-        });
-    });
+    /* --------------------------------------------------------------------------
+       9. CONTACT FORM INTERACTION
+       -------------------------------------------------------------------------- */
+    const contactForm = document.getElementById('contact-form');
+    const formStatusMsg = document.getElementById('form-status-msg');
 
-    // ===== PARTICLE BACKGROUND =====
-    createParticles();
-
-    // ===== CONTACT FORM =====
-    const form = document.querySelector('.contact-form');
-    if (form) {
-        form.addEventListener('submit', e => {
+    if (contactForm && formStatusMsg) {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = form.querySelector('.submit-btn');
-            const originalHTML = btn.innerHTML;
-            
-            btn.classList.add('success');
-            btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            
-            form.reset();
-            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalHTML = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = `<span>SENDING...</span> <i class="fas fa-spinner fa-spin"></i>`;
+            submitBtn.disabled = true;
+
             setTimeout(() => {
-                btn.classList.remove('success');
-                btn.innerHTML = originalHTML;
-            }, 3000);
+                submitBtn.innerHTML = `<span>MESSAGE TRANSMITTED</span> <i class="fas fa-check"></i>`;
+                formStatusMsg.textContent = "Thank you! Your message has been received. Anil will get back to you shortly.";
+                formStatusMsg.className = "form-status-alert success";
+                formStatusMsg.style.display = "block";
+                contactForm.reset();
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.disabled = false;
+                }, 3500);
+            }, 1200);
         });
     }
 
-    // ===== CHATBOT =====
-    const chatToggle   = document.getElementById('chatbot-toggle');
-    const chatWindow   = document.getElementById('chatbot-window');
-    const chatClose    = document.getElementById('chatbot-close');
-    const chatSend     = document.getElementById('chatbot-send');
-    const chatInput    = document.getElementById('chatbot-input-field');
-    const chatMessages = document.getElementById('chatbot-messages');
+    /* --------------------------------------------------------------------------
+       10. AI ASSISTANT CHATBOT
+       -------------------------------------------------------------------------- */
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotMessages = document.getElementById('chatbot-messages');
 
-    if (chatToggle && chatWindow) {
-        chatToggle.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-            if (!chatWindow.classList.contains('hidden')) chatInput?.focus();
+    if (chatbotToggle && chatbotWindow && chatbotClose) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+            if (!chatbotWindow.classList.contains('hidden')) {
+                chatbotInput.focus();
+            }
         });
 
-        chatClose?.addEventListener('click', () => chatWindow.classList.add('hidden'));
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.add('hidden');
+        });
 
-        const botReplies = [
-            "Anil is currently available for new opportunities. Feel free to reach out via the contact form!",
-            "He specializes in Java Full Stack Development with Spring Boot, React.js, and MySQL. Check out his projects above!",
-            "His email is anilbadiger857@gmail.com — don't hesitate to get in touch.",
-            "Anil has a B.E in Computer Science with a CGPA of 8.76. He's passionate about building scalable web applications!",
-            "He has hands-on experience optimizing REST APIs, reducing latency by 25%, and building AI security systems with 97.55% accuracy.",
-            "To hire Anil or discuss a project, the best way is to fill out the contact form on this page."
-        ];
+        function appendMessage(text, isBot = true) {
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble ${isBot ? 'bot-bubble' : 'user-bubble'}`;
+            bubble.innerHTML = `<div class="bubble-content">${text}</div>`;
+            chatbotMessages.appendChild(bubble);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
 
-        let replyIndex = 0;
+        function getBotResponse(input) {
+            const query = input.toLowerCase();
 
-        const sendMessage = () => {
-            const text = chatInput.value.trim();
-            if (!text) return;
+            if (query.includes('data') || query.includes('analyst') || query.includes('analytics') || query.includes('power bi') || query.includes('sql')) {
+                return "Anil is a skilled <strong>Data Analyst</strong> proficient in <strong>SQL, Power BI, Python (Pandas, NumPy), and Exploratory Data Analysis (EDA)</strong>. He engineered the <strong>KMF Dairy Sales & Distribution Analytics</strong> dashboard across 10 districts and holds the <strong>AI Business Intelligence Analyst</strong> certification from Skill India/NSDC.<br><br>👉 <a href='Anil_Govind_Badiger_Data_Analyst_Resume.pdf' download='Anil_Govind_Badiger_Data_Analyst_Resume.pdf' style='color:#f59e0b;font-weight:600;text-decoration:underline;'>Download Data Analyst Resume (PDF)</a>";
+            }
+            if (query.includes('project') || query.includes('work') || query.includes('portfolio')) {
+                return "Anil has engineered three standout projects: <strong>CSMS</strong> (Car Service Management System in Java, Spring Boot, React, MySQL), an <strong>AI Helmet & Mask Detection System</strong> (TensorFlow, OpenCV CNN with 97.55% accuracy), and <strong>KMF Dairy Sales Analytics</strong> (Python & Power BI).";
+            }
+            if (query.includes('skill') || query.includes('tech') || query.includes('stack') || query.includes('language')) {
+                return "Anil is proficient across three domains:<br>• <strong>Full Stack:</strong> Java, Spring Boot, React.js, MySQL, REST APIs, Microservices, Docker, AWS<br>• <strong>AI/ML:</strong> Python, TensorFlow, CNN, OpenCV, Scikit-Learn<br>• <strong>Data Analytics:</strong> SQL, Power BI, Pandas, NumPy, EDA, Data Cleaning";
+            }
+            if (query.includes('experience') || query.includes('intern') || query.includes('company') || query.includes('acaders')) {
+                return "Anil has worked as a <strong>Java Full Stack Intern at Acaders</strong> (Bangalore), cutting API latency by 25%, and as an <strong>AI/ML Intern at Smart Learn EdTech</strong>, developing CNN computer vision models with 85.4% accuracy.";
+            }
+            if (query.includes('education') || query.includes('college') || query.includes('degree') || query.includes('cgpa')) {
+                return "Anil holds a <strong>B.E. in Computer Science & Engineering</strong> from AGMRCET (VTU) with a stellar <strong>CGPA of 8.76/10</strong>.";
+            }
+            if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('hire')) {
+                return "You can reach Anil directly at <strong>anilbadiger857@gmail.com</strong>, by phone at <strong>+91 9019615968</strong>, or on LinkedIn at <a href='https://www.linkedin.com/in/anil-gb-901961agb' target='_blank' style='color:#f59e0b;text-decoration:underline;'>anil-gb-901961agb</a>.";
+            }
+            if (query.includes('resume') || query.includes('cv') || query.includes('download')) {
+                return "Anil has tailored resumes available for your specific opening:<br><br>" +
+                       "☕ <a href='Anil_Govind_Badiger_Java_Developer_Resume.pdf' download='Anil_Govind_Badiger_Java_Developer_Resume.pdf' style='color:#f59e0b;font-weight:600;text-decoration:underline;'>Java Full Stack Resume</a><br>" +
+                       "🧠 <a href='Anil_Govind_Badiger_AI_ML_Resume.pdf' download='Anil_Govind_Badiger_AI_ML_Resume.pdf' style='color:#f59e0b;font-weight:600;text-decoration:underline;'>AI / ML Engineer Resume</a><br>" +
+                       "📊 <a href='Anil_Govind_Badiger_Data_Analyst_Resume.pdf' download='Anil_Govind_Badiger_Data_Analyst_Resume.pdf' style='color:#f59e0b;font-weight:600;text-decoration:underline;'>Data Analyst Resume</a>";
+            }
+            return "Anil Govind Badiger is a Java Full Stack Developer, AI/ML Engineer, and Data Analyst with an 8.76 CGPA. Would you like to know more about his <strong>projects</strong>, <strong>technical skills</strong>, <strong>internships</strong>, or <strong>download his tailored resumes</strong>?";
+        }
 
-            // User message
-            appendMessage(text, 'user');
-            chatInput.value = '';
+        function handleSend() {
+            const query = chatbotInput.value.trim();
+            if (!query) return;
 
-            // Bot response
+            appendMessage(query, false);
+            chatbotInput.value = '';
+
             setTimeout(() => {
-                const reply = botReplies[replyIndex % botReplies.length];
-                replyIndex++;
-                appendMessage(reply, 'bot');
-            }, 900);
-        };
+                const response = getBotResponse(query);
+                appendMessage(response, true);
+            }, 500);
+        }
 
-        const appendMessage = (text, sender) => {
-            const div = document.createElement('div');
-            div.className = `message ${sender}`;
-            div.innerHTML = `<div class="message-content">${text}</div>`;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        };
-
-        chatSend?.addEventListener('click', sendMessage);
-        chatInput?.addEventListener('keydown', e => {
-            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+        chatbotSendBtn.addEventListener('click', handleSend);
+        chatbotInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleSend();
         });
     }
-
 });
 
-/* =============================================
-   PARTICLE SYSTEM - ENHANCED WITH MOUSE INTERACTION
-   ============================================= */
-function createParticles() {
-    const container = document.getElementById('particles-container');
-    if (!container) return;
-
-    const count = window.innerWidth < 768 ? 30 : 70;
-    const particles = [];
-
-    for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-
-        const size    = Math.random() * 3 + 0.5;
-        const posX    = Math.random() * 100;
-        const posY    = Math.random() * 100;
-        const dur     = Math.random() * 30 + 15;
-        const opacity = Math.random() * 0.5 + 0.1;
-        const isPurple = i % 3 !== 1;
-        const delay = Math.random() * 5;
-
-        // Store base position for mouse interaction
-        const baseX = posX;
-        const baseY = posY;
-
-        p.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            border-radius: 50%;
-            left: ${posX}%;
-            top: ${posY}%;
-            opacity: ${opacity};
-            background: ${isPurple ? '#a855f7' : '#3b82f6'};
-            box-shadow: 0 0 ${size * 4}px ${isPurple ? 'rgba(168,85,247,0.8)' : 'rgba(59,130,246,0.8)'};
-            pointer-events: none;
-            animation-delay: ${delay}s;
-            will-change: transform;
-        `;
-
-        const moveX = (Math.random() - 0.5) * 150;
-        const moveY = (Math.random() - 0.5) * 150;
-
-        const anim = p.animate([
-            { transform: 'translate(0, 0) scale(1)', opacity: opacity },
-            { transform: `translate(${moveX}px, ${moveY}px) scale(1.5)`, opacity: opacity * 0.5 },
-            { transform: 'translate(0, 0) scale(1)', opacity: opacity }
-        ], {
-            duration: dur * 1000,
-            iterations: Infinity,
-            easing: 'ease-in-out',
-            delay: delay * 1000
-        });
-
-        container.appendChild(p);
-        particles.push({ el: p, baseX, baseY, size, strength: Math.random() * 0.04 + 0.01 });
-    }
-
-    // Mouse interaction — particles gently repel from cursor
-    let mx = -9999, my = -9999;
-    document.addEventListener('mousemove', (e) => {
-        mx = (e.clientX / window.innerWidth) * 100;
-        my = (e.clientY / window.innerHeight) * 100;
-    });
-
-    function updateParticles() {
-        particles.forEach(({ el, baseX, baseY, strength }) => {
-            const dx = mx - baseX;
-            const dy = my - baseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const maxDist = 15; // % units
-
-            if (dist < maxDist) {
-                const force = (maxDist - dist) / maxDist;
-                const offsetX = -(dx / dist) * force * 4;
-                const offsetY = -(dy / dist) * force * 4;
-                el.style.marginLeft = `${offsetX}%`;
-                el.style.marginTop  = `${offsetY}%`;
-            } else {
-                el.style.marginLeft = '0%';
-                el.style.marginTop  = '0%';
-            }
-        });
-        requestAnimationFrame(updateParticles);
-    }
-
-    // Only run mouse interaction on non-mobile
-    if (window.innerWidth >= 768) {
-        updateParticles();
-    }
-}
-
-// ── Project Image Preview Lightbox ──
-function openPreview(imageSrc, title) {
+/* --------------------------------------------------------------------------
+   GLOBAL LIGHTBOX FUNCTIONS
+   -------------------------------------------------------------------------- */
+function openPreview(imgSrc, title) {
     const modal = document.getElementById('preview-modal');
-    const img   = document.getElementById('preview-img');
-    const ttl   = document.getElementById('preview-title');
-    img.src     = imageSrc;
-    ttl.textContent = title;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const modalImg = document.getElementById('preview-img');
+    const modalTitle = document.getElementById('preview-title');
+
+    if (modal && modalImg && modalTitle) {
+        modalImg.src = imgSrc;
+        modalTitle.textContent = title;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closePreview() {
     const modal = document.getElementById('preview-modal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
+    if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
 }
 
-// Close on Escape key
-document.addEventListener('keydown', function(e) {
+// Close lightbox on Escape key
+document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closePreview();
 });
